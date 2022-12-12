@@ -3,12 +3,17 @@ def swap(arr, i, j):
     arr[i] = arr[j]
     arr[j] = temp
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+<<<<<<< Updated upstream
 def insertLevelOrder(arr, i, n):
     root = None
     if i < n:
@@ -56,3 +61,19 @@ def is_leaf(root: TreeNode):
             return True
         else:
             return False
+=======
+
+def insertLevelOrder(array: list,i,n)-> TreeNode:
+    root = None
+    # i ,n= 0,len(array)
+    # Base case for recursion 
+    if i < n:
+        root = TreeNode(array[i]) 
+        # insert left child 
+        root.left = insertLevelOrder(array, 2 * i + 1, n)
+        # insert right child 
+        root.right = insertLevelOrder(array, 2 * i + 2, n)          
+    return root
+
+
+>>>>>>> Stashed changes
