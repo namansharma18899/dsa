@@ -1,11 +1,20 @@
 import heapq
 import heapq
+from collections import defaultdict
 
 
 def swap(arr, i, j):
     temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp
+
+
+def Graph():
+  def __init__(self, arr):#letarr beadjacency 
+    self.graph = defaultdict(list)
+    for each in arr:
+      self.graph[each][0].append(each[1])
+      self.graph[each[1]].append(each[0])
 
 class MaxHeapObj(object):
   def __init__(self, val): self.val = val
