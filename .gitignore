@@ -1,2 +1,4 @@
 __init__
-__pychache__
+__pycache__/
+bin/
+build/
