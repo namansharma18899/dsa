@@ -1,6 +1,7 @@
 import heapq
 import heapq
 from collections import defaultdict
+import time
 
 
 def swap(arr, i, j):
@@ -8,6 +9,14 @@ def swap(arr, i, j):
     arr[i] = arr[j]
     arr[j] = temp
 
+def timer(fun):
+  def wraps(*args):
+    start_time = time.time()
+    output = fun(*args)
+    end_time = time.time()
+    print(f'Time Taken by {fun.__name__} -> {end_time-start_time}')
+    return output
+  return wraps
 
 def Graph():
   def __init__(self, arr):#letarr beadjacency 
