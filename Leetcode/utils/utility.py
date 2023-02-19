@@ -3,6 +3,29 @@ import heapq
 from collections import defaultdict
 import time
 
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+    def __repr__(self) -> str:
+      print(self.val)
+      head = self.next
+      while(head is not None):
+        print(head.val)
+        # eval(head.val)
+        head=head.next
+      return ""
+
+def create_linked_list_from_array(arr):
+  head = ListNode(arr.pop(0))
+  temp= head
+  for each in arr:
+    temp.next = ListNode(each)
+    temp = temp.next
+  return head
+
+
 
 def swap(arr, i, j):
     temp = arr[i]
