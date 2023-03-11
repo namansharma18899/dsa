@@ -25,7 +25,23 @@ def create_linked_list_from_array(arr):
     temp = temp.next
   return head
 
-
+def print_tree(root):
+    queue = list()
+    queue.append(root.left)
+    queue.append(root.right)
+    ln = len(queue)
+    print(root.val,"\n")
+    while(ln > 0):
+        while(ln>0):
+            el = queue.pop(0)
+            if el:
+                print(el.val,end=" ")
+                queue.append(el.left)
+                queue.append(el.right)
+            ln-=1
+        print("\n")
+        ln = len(queue)
+    return ""
 
 def swap(arr, i, j):
     temp = arr[i]
