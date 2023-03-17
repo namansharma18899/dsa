@@ -42,6 +42,10 @@ def print_tree(root):
         print("\n")
         ln = len(queue)
     return ""
+def swap_Node_val(a,b):
+   temp = a.val
+   a.val = b.val
+   b.val = temp
 
 def swap(arr, i, j):
     temp = arr[i]
