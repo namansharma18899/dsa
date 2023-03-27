@@ -2,3 +2,13 @@ __init__
 __pycache__/
 bin/
 build/
+/.env
+/.idea/.gitignore
+/.idea/dsa.iml
+/Striver Sheet/greedy/job sequencing.py
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.vscode/settings.json
+/.idea/vcs.xml
