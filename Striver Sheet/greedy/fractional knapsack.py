@@ -1,4 +1,6 @@
 # User function Template for python3
+import xml.dom.domreg
+
 
 class Item:
     def __init__(self, val, w):
@@ -8,10 +10,14 @@ class Item:
 
 class Solution:
     def fractionalknapsack(self, W, arr, n):
-        sorted(arr, key=lambda x: int(x.weight / x.value))
+        arr = sorted(arr, key=lambda x: x.value / x.weight)
         result = 0
-        index = 0
-
+        while W > 0 and len(arr) > 0:
+            # w = 20, value/wration = x ther. sum=x*
+            x = arr.pop()
+            value_weight_ratio = x.value / x.weight
+            result += int(min(W, x.weight)) * value_weight_ratio
+            W -= min(W, x.weight)
         return result
 
 
