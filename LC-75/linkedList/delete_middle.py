@@ -26,7 +26,7 @@ class Solution:
 
 ob = Solution()
 arr= [1,2,3,4,5]
-head = ListNode(arr.pop())
+head = ListNode(arr.pop(0))
 temp = head
 for each in arr:
     temp.next = ListNode(each)
