@@ -7,33 +7,38 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-class Solution:
-    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+class Solution(object):
+    def pathSum(self, root, target):
+        # define global result and path
         self.result = 0
-        self.dfs(root, targetSum)
+        cache = {0:1}
+        
+        # recursive to get result
+        self.dfs(root, target, 0, cache)
+        
+        # return result
         return self.result
-
-    def dfs(self, node, targetSum):
-        if not node:
-            return
-        #Preorder
-        self.test(node, targetSum)
-        self.dfs(node.left, targetSum)
-        self.dfs(node.right, targetSum)
-
-    def test(self, node: Optional[TreeNode], target: int):
-        if not node:
-            return
-        if node.val==target:
-            self.result+=1
-        target-=node.val
-        self.test(node.left,  target)
-        self.test(node.right, target)
-
+    
+    def dfs(self, root, target, currPathSum, cache):
+        # exit condition
+        if root is None:
+            return  
+        # calculate currPathSum and required oldPathSum
+        currPathSum += root.val
+        oldPathSum = currPathSum - target
+        # update result and cache
+        self.result += cache.get(oldPathSum, 0)
+        cache[currPathSum] = cache.get(currPathSum, 0) + 1
+        
+        # dfs breakdown
+        self.dfs(root.left, target, currPathSum, cache)
+        self.dfs(root.right, target, currPathSum, cache)
+        # when move to a different branch, the currPathSum is no longer available, hence remove one. 
+        cache[currPathSum] -= 1
 
 
 x = Solution()
 arr = [1,None,2,None,3,None,4,None,5]
 num= 3
 
-print(x.pathSum(arr,num))
+# print(x.pathSum(arr,num))

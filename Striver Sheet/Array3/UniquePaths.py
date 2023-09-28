@@ -1,19 +1,21 @@
-#from utils import *
+# from utils import *
 class Solution:
-    def traverse(self, m,n,i,j):
-        #boundary conditions
-        if i>=m or j>=n:
-            return 0
-        if i==(m-1):
-            return 1
-        if j==(n-1):
-            return 1
-        #other cases
-        return  self.traverse(m,n,i+1,j)+self.traverse(m,n,i,j+1)
+    def traverse(self,i,j):
+        if i==0 and j==0: return 1 
+        if self.temp[i][j]!=-1:
+            return self.temp[i][j]
+        cnt = 0
+        if i>0:
+            cnt+=self.traverse(i-1,j)
+        if j>0:
+            cnt+=self.traverse(i,j-1)
+        self.temp[i][j]=cnt
+        return cnt
 
     def uniquePaths(self, m: int, n: int) -> int:
-        "no intuition just struck, going with the flow for now"
-        return self.traverse(m,n,0,0)
+        self.temp = [[-1]*n for _ in range(m)]
+        self.temp[0][0]=1
+        return self.traverse(m-1,n-1)
         
 
 def fun(args=None):
