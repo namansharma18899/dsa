@@ -1,6 +1,8 @@
 import math
+"""
+HINT: Merge Sort Algorithm
+"""
 
-# 
 arr= [14, 7, 3, 12, 9, 11, 6, 2]
 # arr = [14, 2, 3 ,12]
 
