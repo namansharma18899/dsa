@@ -29,18 +29,28 @@ def takeInput() :
 2nd try 
 """
 
-def c_inversion(arr):
-    i = 0
-    j = len(arr)-1
-    count=0
-    while(i < j):
-        if arr[i] > arr[j]:
-            temp = j+0
-            while(i < temp and arr[i] >  arr[temp]):
-                count+=1
-                temp-=1
-        i+=1
-    return count
+# def c_inversion(arr):
+#     i = 0
+#     j = len(arr)-1
+#     count=0
+#     while(i < j):
+#         if arr[i] > arr[j]:
+#             temp = j+0
+#             while(i < temp and arr[i] >  arr[temp]):
+#                 count+=1
+#                 temp-=1
+#         i+=1
+#     return count
 
-arr = [2,5,1,3,4]
-print(c_inversion(arr))
+# arr = [2,5,1,3,4]
+# print(c_inversion(arr))
+
+def count_inversion(arr):
+    i,j = 0, len(arr)-1 
+    result = 0
+    while(i<j):
+        pass
+    return result
+
+arr = [3, 2, 1]
+print(count_inversion(arr))

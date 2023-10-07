@@ -1,9 +1,12 @@
+# arr =[
+#     [4,9,7],
+#     [3,8,5],
+#     [1,2,6]
+# ]
 arr =[
-    [4,9,7],
-    [3,8,5],
-    [1,2,6]
+    [1,2,3],
+    [4,5,6],
 ]
-
 class Solution:
     def traverse(self,prev, i,j):  
         if self.temp[i][j]!=-1:
