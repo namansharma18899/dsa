@@ -1,5 +1,4 @@
 import heapq
-import heapq
 from collections import defaultdict
 import time
 
@@ -57,7 +56,7 @@ def timer(fun):
     start_time = time.time()
     output = fun(*args)
     end_time = time.time()
-    print(f'Time Taken by {fun.__name__} -> {end_time-start_time}')
+    print(f'Time Taken by {fun.__name__} -> {end_time-start_time:.5f}')
     return output
   return wraps
 
