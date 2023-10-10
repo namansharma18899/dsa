@@ -1,6 +1,9 @@
 """
 Complexity -> O(NxM) where N-> len str and M is avg len of word
 """
+from Leetcode.utils.utility import timer
+
+
 def swap(arr, l, r):
     while(l<r):
         temp = arr[l]
@@ -11,6 +14,7 @@ def swap(arr, l, r):
 
 
 class Solution:
+    @timer
     def reverseWords(self, s: str) -> str:
         st = [x for x in s]
         swap(st, 0, len(st)-1)
