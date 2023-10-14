@@ -1,6 +1,8 @@
 from typing import List
 
-
+"""
+Better approach Tries
+"""
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         prev = strs.pop(0)
