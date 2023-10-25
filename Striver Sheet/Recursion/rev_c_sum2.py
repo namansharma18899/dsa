@@ -3,25 +3,32 @@ from typing import List
 
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        # self.cands = list(set(candidates))
-        self.cands = sorted(candidates)
-        self.a_hash = set()
-        self.comb(target, [], 0, 0)
-        return [x for x in self.a_hash]
+        res = set()
+        candidates.sort()
+        print(len(candidates))
+        temp = []
 
-    def comb(self, target,arr, psum, index):
-        if psum>target:
-            return
-        if psum==target:
-            self.a_hash.add(tuple(arr))
-            return
-            # self.res.append(arr)
-        for ind in range(index, len(self.cands)):
-            j = ind+0
-            while(ind<(len(self.cands)-1) and self.cands[ind]==self.cands[ind+1]):
-                ind+=1
-            self.comb(target,arr+[self.cands[j]],psum+self.cands[ind],j+1)
-
+        def helper(target, ind):
+            if target==0:
+                res.add(tuple(temp))
+                return
+            if target < 0 or ind>=len(candidates):
+                print('in re')
+                return
+            temp.append(candidates[ind])
+            helper(target-candidates[ind], ind+1)
+            temp.pop()
+            temp_ind = ind+0
+            # we want to skip all the same nums cause they will result in the same trees which we just computed.
+            while(temp_ind<len(candidates)-1 and candidates[temp_ind]==candidates[temp_ind+1]):
+                temp_ind+=1
+            print('tic -> ', temp_ind)
+            temp.append(candidates[temp_ind])
+            helper(target-candidates[temp_ind], ind+1)
+            temp.pop()
+        
+        helper(target, 0)
+        return list(res)
 
 
 sol =  Solution()
