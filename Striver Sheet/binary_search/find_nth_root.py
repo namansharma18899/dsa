@@ -1,17 +1,27 @@
-def NthRoot(n: int, m: int):
-    powers = [ind for ind in range(100)]
+class Root:
+    def NthRoot(self,  n: int, m: int):
+        arr = [ind for ind in range(100)]
+        result = []
+        
+        def root_helper(arr, l, r):
+            if l==r:
+                return True if n ** arr[l] == m else False
+            mp = int()
+            l = 0
+            r = len(arr)
+            lsar = arr[l:mp]
+            rsar = arr[mp:r]
+            pw = arr[mp]
+            num = n**mp
+            if num == m:
+                return mp
+            if m < num:
+                arr = arr[l : mp + 1]
+                return root_helper(arr, l, mp)
+            else:
+                return root_helper(arr, mp, r)
+        return root_helper(arr, 0, len(arr))
 
-    def root_helper():
-        mp = l + (r - l)/2
-        if len(powers)<=2:
-        lsar  = powers[l:mp+1]
-        rsar =  powers[mp:r+1]
-        pw = powers[mp]
-        num = n**mp
-        if num == m:
-            return mp 
-        if m< num:
-            powers  = powers[l: mp+1]
-            return root_helper(l, mp) 
-        else:
-            return root_helper(mp, r)
+
+x = Root()
+print(x.NthRoot(3, 27))

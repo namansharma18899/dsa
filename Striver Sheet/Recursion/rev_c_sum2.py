@@ -15,7 +15,7 @@ class Solution:
             if target < 0 or ind>=len(candidates):
                 print('in re')
                 return
-            temp.append(candidates[ind])
+            temp.append(candidates[ind])it
             helper(target-candidates[ind], ind+1)
             temp.pop()
             temp_ind = ind+0
