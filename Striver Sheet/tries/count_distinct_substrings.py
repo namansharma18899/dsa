@@ -3,7 +3,7 @@ from icecream import ic
 
 class TrieNode:
     def __init__(self, text=""):
-        self.children = {Striver Sheet/tries/count_distinct_substrings.py}
+        self.children = {}
         self.is_eow = False
 
 
