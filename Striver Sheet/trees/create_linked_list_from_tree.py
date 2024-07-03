@@ -26,6 +26,7 @@ class Solution:
             if root.right:
                 temp = root.right
                 root.right = root.left
+                root.left = None
                 # left_subtree_rmost_child.left = None
                 left_subtree_rmost_child.right = temp
                 return right_subtree_rmost_child
