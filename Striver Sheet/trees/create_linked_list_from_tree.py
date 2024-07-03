@@ -6,7 +6,6 @@ class TreeNode:
         self.right = right
 from typing import Optional
 
-
 class Solution:
     head = None
     def flatten(self, root: Optional[TreeNode]) -> None:
@@ -18,21 +17,11 @@ class Solution:
                 return None
             left_subtree_rmost_child = flatten_tree(root.left)
             right_subtree_rmost_child = flatten_tree(root.right)
-            if not left_subtree_rmost_child:
-                if not right_subtree_rmost_child:
-                    return root
-                else:
-                    return right_subtree_rmost_child
-            if root.right:
-                temp = root.right
+            if left_subtree_rmost_child:
+                left_subtree_rmost_child.right = root.right
                 root.right = root.left
                 root.left = None
-                # left_subtree_rmost_child.left = None
-                left_subtree_rmost_child.right = temp
-                return right_subtree_rmost_child
-            else:
-                root.right = root.left
-                root.left = None
-                return left_subtree_rmost_child  
+                return right_subtree_rmost_child if right_subtree_rmost_child else left_subtree_rmost_child
+            return root if not right_subtree_rmost_child else right_subtree_rmost_child
         head = root
         flatten_tree(root)
