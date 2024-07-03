@@ -13,16 +13,25 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        def flt(root):
+        def flatten_tree(root):
             if not root:
-                return
-            if not self.head:
-                head = root
-            temp_r = root.right 
-            temp_l = root.left 
-            self.flatten(root.right)
-            self.flatten(root.left)
-            root.right = root.left
-            root.left = None
-            root.right.right = temp_r
-        flt(root)
+                return None
+            left_subtree_rmost_child = flatten_tree(root.left)
+            right_subtree_rmost_child = flatten_tree(root.right)
+            if not left_subtree_rmost_child:
+                if not right_subtree_rmost_child:
+                    return root
+                else:
+                    return right_subtree_rmost_child
+            if root.right:
+                temp = root.right
+                root.right = root.left
+                # left_subtree_rmost_child.left = None
+                left_subtree_rmost_child.right = temp
+                return right_subtree_rmost_child
+            else:
+                root.right = root.left
+                root.left = None
+                return left_subtree_rmost_child  
+        head = root
+        flatten_tree(root)
