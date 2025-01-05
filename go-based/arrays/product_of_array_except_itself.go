@@ -1,36 +1,25 @@
 package main
 
 func productExceptSelf(nums []int) []int {
-	mul := 1
-	two_count := 0
-	for _, val := range nums {
-		if val != 0 {
-			mul *= val
-		} else {
-			two_count++
-		}
-	}
-	if two_count > 1 {
-		arr := make([]int, len(nums))
-		return arr
-	}
+	mod := 1<<31 - 1 // Max value of 32-bit signed integer (2^31 - 1)
 	result := make([]int, 0)
-	if two_count == 1 {
-		for _, val := range nums {
-			if val == 0 {
-				result = append(result, mul)
-			} else {
-				result = append(result, val)
-			}
-		}
-	} else {
-		for _, val := range nums {
-			V := val
-			if val < 0 && mul > 0 {
-				V = V * -1
-			}
-			result = append(result, mul/V)
-		}
+	// left prod, right prod
+	leftProd := make([]int, len(nums))
+	rightProd := make([]int, len(nums))
+	prod := 1
+	for index := 0; index < len(nums); index++ {
+		leftProd[index] = prod
+		prod *= nums[index]
+	}
+	prod = 1
+	for index := len(nums) - 1; index >= 0; index-- {
+		rightProd[index] = prod
+		prod *= nums[index]
+	}
+	for index := 0; index < len(nums); index++ {
+		res := (leftProd[index] * rightProd[index]) % mod
+		result = append(result, res)
 	}
 	return result
+
 }
