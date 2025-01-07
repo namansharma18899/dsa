@@ -1,36 +1,28 @@
 package main
 
-import "fmt"
-
 func longestConsecutive(nums []int) int {
-	// Logic, if a number before me exists, then the subsequence is valid
-	if len(nums) <= 1 {
-		return len(nums)
-	}
-	maxVal := nums[0]
-	minVal := nums[0]
-	mapOFElements := make(map[int]int)
-	for index := 0; index < len(nums); index++ {
-		mapOFElements[nums[index]] = 1
-		if nums[index] > maxVal {
-			maxVal = nums[index]
-		}
-		if nums[index] < minVal {
-			minVal = nums[index]
-		}
-	}
-	result := 0
-	for index := minVal; index < maxVal+1; index++ {
-		if mapOFElements[index] > 0 {
-			if mapOFElements[index-1] > 0 {
-				mapOFElements[index] += mapOFElements[index-1]
-			}
-		}
-		if mapOFElements[index] > result {
-			result = mapOFElements[index]
-		}
-	}
-	fmt.Println("map -> ", mapOFElements)
+	seqs := make(map[int]int, len(nums))
 
-	return result
+	for _, num := range nums {
+		if _, exists := seqs[num]; exists {
+			continue
+		}
+
+		prevSeq, nextSeq := seqs[num-1], seqs[num+1]
+		currSeq := prevSeq + nextSeq + 1
+		seqs[num] = currSeq
+		if prevSeq > 0 {
+			seqs[num-prevSeq] = currSeq
+		}
+		if nextSeq > 0 {
+			seqs[num+nextSeq] = currSeq
+		}
+	}
+
+	maxSeq := 0
+	for _, seq := range seqs {
+		maxSeq = max(seq, maxSeq)
+	}
+
+	return maxSeq
 }
