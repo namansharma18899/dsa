@@ -1,15 +1,25 @@
 package main
 
+import (
+	"unicode"
+)
+
 func isPalindrome(s string) bool {
-	pointer2 := len(s) - 1
-	for index := 0; index < len(s)-1; index++ {
-		if index >= pointer2 {
-			break
+	rightP := len(s) - 1
+	leftP := 0
+	for leftP < rightP {
+		// Loop until we reach a valid character to compare
+		for leftP < rightP && !(unicode.IsLetter(rune(s[leftP]))) || !(unicode.IsDigit(rune(s[leftP]))) {
+			leftP++
 		}
-		if s[index] != s[pointer2] {
+		for leftP < rightP && !(unicode.IsLetter(rune(s[rightP]))) || !(unicode.IsDigit(rune(s[rightP]))) {
+			rightP--
+		}
+		if unicode.ToLower(rune(s[leftP])) != unicode.ToLower(rune(s[rightP])) {
 			return false
 		}
-		pointer2--
+		leftP++
+		rightP--
 	}
 	return true
 }
