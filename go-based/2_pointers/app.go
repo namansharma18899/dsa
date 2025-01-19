@@ -2,15 +2,21 @@ package main
 
 import "fmt"
 
+type testcase struct {
+	numbers  []int
+	target   int
+	expected []int
+}
+
 func main() {
-	input := []string{
-		// "A man, a plan, a canal: Panama",
-		// "naman",
-		// "N     a     m  a         N",
-		"1001",
-		// "0P",
+	testcases := []testcase{
+		testcase{
+			numbers:  []int{2, 7, 11, 15},
+			target:   9,
+			expected: []int{1, 2},
+		},
 	}
-	for _, eachSString := range input {
-		fmt.Println(isPalindrome(eachSString))
+	for _, tcase := range testcases {
+		fmt.Println(twoSum(tcase.numbers, tcase.target))
 	}
 }

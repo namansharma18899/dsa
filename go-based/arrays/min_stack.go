@@ -15,16 +15,12 @@ func (this *MinStack) Push(val int) {
 
 func (this *MinStack) Pop() {
 	if len(this.stack) > 0 {
-		this.stack = this.stack[:1]
+		this.stack = this.stack[:len(this.stack)-1]
 	}
 }
 
 func (this *MinStack) Top() int {
 	return this.stack[len(this.stack)-1]
-}
-
-func (this *MinStack) GetMin() int {
-	return 0
 }
 
 /**
