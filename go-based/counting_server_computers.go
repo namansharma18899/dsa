@@ -1,22 +1,15 @@
 package main
 
 func countServers(grid [][]int) int {
-	Rows := make([]int, len(grid))
-	Col := make([]int, len(grid[0]))
-	for i := 0; i < len(grid); i++ {
-		for j := 0; j < len(grid[0]); j++ {
-			Rows[i] += grid[i][j]
-			Col[j] += grid[i][j]
+	rows, cols := len(grid), len(grid[0])
+	dynamicArray := make([][]int, rows) // Create a slice for rows
+	for i := 0; i < rows; i++ {
+		dynamicArray[i] = make([]int, cols) // Create a slice for each column
+	}
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			dynamicArray[i][j] = i + j
 		}
 	}
-	ans := 0
-	for i := 0; i < len(grid); i++ {
-		for j := 0; j < len(grid[0]); j++ {
-			if grid[i][j] == 1 && (Rows[i] > 1 || Col[j] > 1) {
-				ans++
-			}
-		}
-	}
-
-	return ans
+	return 0
 }
