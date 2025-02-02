@@ -27,7 +27,7 @@ func calculate(a, b int, op string) int32 {
 		return int32(a * b)
 	case "/":
 		if b != 0 {
-			return int32(a / b)
+			return int32(b / a)
 		}
 		return 0 // Handle division by zero safely
 	default:
