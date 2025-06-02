@@ -25,6 +25,8 @@ func calculate(a, b int, op string) int32 {
 		return int32(a + b)
 	case "*":
 		return int32(a * b)
+	case "-":
+		return int32(b - a)
 	case "/":
 		if b != 0 {
 			return int32(b / a)
@@ -37,8 +39,8 @@ func calculate(a, b int, op string) int32 {
 
 func evalRPN(tokens []string) int {
 	stack := make([]int, 0)
-	result := 0
-	for index, val := range tokens {
+	// result := 0
+	for _, val := range tokens {
 		intVal, err := strconv.Atoi(val)
 		if err != nil {
 			stack = append(stack, intVal)
@@ -47,10 +49,10 @@ func evalRPN(tokens []string) int {
 			stack = stack[:len(stack)-2]
 			valRes := int(calculate(l1, l2, val))
 			stack = append(stack, valRes)
-			if index == len(tokens)-1 {
-				return valRes
-			}
+			// if index == len(tokens)-1 {
+			// 	return valRes
+			// }
 		}
 	}
-	return result
+	return stack[0]
 }
